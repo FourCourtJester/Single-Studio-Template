@@ -5,7 +5,7 @@ import { Col, Row } from 'react-bootstrap'
 import { Image, Scene, Timer, Variable } from 'components/source'
 
 // Import style
-import '../scss/project.scss'
+import '../scss/sources.scss'
 
 /**
  * Source: Replay
