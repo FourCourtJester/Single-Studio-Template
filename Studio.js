@@ -14,12 +14,31 @@ function Studio() {
     <>
       <Row>
         <Col>
+          <legend className="m-0">Player One</legend>
+        </Col>
+        <Col xs="auto">
+          <SwapButton
+            fields={[
+              'players.1.displayName',
+              'players.1.score',
+              'players.1.alliance',
+              'players.1.deck.faction',
+              'players.2.displayName',
+              'players.2.score',
+              'players.2.alliance',
+              'players.2.deck.faction',
+            ]}
+            label="Players"
+            placement="left"
+          />
+        </Col>
+        <Col>
           <Row>
             <Col>
-              <legend className="m-0">Player One</legend>
+              <legend className="m-0">Player Two</legend>
             </Col>
             <Col xs="auto">
-              <SwapButton
+              <ResetButton
                 fields={[
                   'players.1.displayName',
                   'players.1.score',
@@ -31,28 +50,7 @@ function Studio() {
                   'players.2.deck.faction',
                 ]}
                 label="Players"
-              />
-            </Col>
-          </Row>
-        </Col>
-        <Col>
-          <Row>
-            <Col>
-              <legend className="m-0">Player Two</legend>
-            </Col>
-            <Col xs="auto">
-              <ResetButton
-                fields={[
-                  'variables.players.1.displayName',
-                  'variables.players.1.score',
-                  'variables.players.1.alliance',
-                  'variables.players.1.deck.faction',
-                  'variables.players.2.displayName',
-                  'variables.players.2.score',
-                  'variables.players.2.alliance',
-                  'variables.players.2.deck.faction',
-                ]}
-                label="Players"
+                placement="left"
               />
             </Col>
           </Row>
@@ -137,23 +135,39 @@ function Studio() {
           </Row>
         </Col>
       </Row>
+      <hr />
       <Row>
         <Col>
           <legend>Toggles</legend>
         </Col>
+        <Col xs="auto">
+          <ResetButton fields={['timers.countdown', 'toggles.missile', 'variables.map']} label="Map & Missiles" placement="left" />
+        </Col>
       </Row>
       <Row>
         <Col>
-          <Row className="gx-2">
+          <Row className="d-flex flex-row align-items-center h-100 gx-2">
             <Col>
-              <Toggle label="Missiles One" name="missiles.one" group={['missiles.one', 'missiles.two']} />
+              <Toggle icon="rocket" name="missile.1.player.1" group={['missile.1.player.1', 'missile.1.player.2']} />
+            </Col>
+            <Col>
+              <Toggle icon="rocket" name="missile.2.player.1" group={['missile.2.player.1', 'missile.2.player.2']} />
+            </Col>
+            <Col>
+              <Toggle icon="rocket" name="missile.3.player.1" group={['missile.3.player.1', 'missile.3.player.2']} />
             </Col>
           </Row>
         </Col>
         <Col>
-          <Row className="gx-2">
+          <Row className="d-flex flex-row align-items-center h-100 gx-2">
             <Col>
-              <Toggle label="Missiles Two" name="missiles.two" group={['missiles.one', 'missiles.two']} />
+              <Toggle icon="rocket" name="missile.1.player.2" variant="danger" group={['missile.1.player.1', 'missile.1.player.2']} />
+            </Col>
+            <Col>
+              <Toggle icon="rocket" name="missile.2.player.2" variant="danger" group={['missile.2.player.1', 'missile.2.player.2']} />
+            </Col>
+            <Col>
+              <Toggle icon="rocket" name="missile.3.player.2" variant="danger" group={['missile.3.player.1', 'missile.3.player.2']} />
             </Col>
           </Row>
         </Col>
