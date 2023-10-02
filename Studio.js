@@ -14,23 +14,27 @@ function Studio() {
     <>
       <Row>
         <Col>
-          <legend className="m-0">Player One</legend>
-        </Col>
-        <Col xs="auto">
-          <SwapButton
-            fields={[
-              'players.1.displayName',
-              'players.1.score',
-              'players.1.alliance',
-              'players.1.deck.faction',
-              'players.2.displayName',
-              'players.2.score',
-              'players.2.alliance',
-              'players.2.deck.faction',
-            ]}
-            label="Players"
-            placement="left"
-          />
+          <Row>
+            <Col>
+              <legend className="m-0">Player One</legend>
+            </Col>
+            <Col xs="auto">
+              <SwapButton
+                fields={[
+                  'players.1.displayName',
+                  'players.1.score',
+                  'players.1.alliance',
+                  'players.1.deck.faction',
+                  'players.2.displayName',
+                  'players.2.score',
+                  'players.2.alliance',
+                  'players.2.deck.faction',
+                ]}
+                label="Players"
+                placement="left"
+              />
+            </Col>
+          </Row>
         </Col>
         <Col>
           <Row>
