@@ -17,7 +17,7 @@ function _remove(state, paths) {
     const obj = parts.length ? Utils.getObjValue(state, parts.join('.')) : state
 
     // If Object, remove all children keys from Storage
-    if (typeof obj[key] === 'object') {
+    if (typeof obj?.[key] === 'object') {
       Storage.removeObj([name, path], obj[key])
     }
 

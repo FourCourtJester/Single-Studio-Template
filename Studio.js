@@ -44,14 +44,14 @@ function Studio() {
             <Col xs="auto">
               <ResetButton
                 fields={[
-                  'players.1.displayName',
-                  'players.1.score',
-                  'players.1.alliance',
-                  'players.1.deck.faction',
-                  'players.2.displayName',
-                  'players.2.score',
-                  'players.2.alliance',
-                  'players.2.deck.faction',
+                  'variables.players.1.displayName',
+                  'variables.players.1.score',
+                  'variables.players.1.alliance',
+                  'variables.players.1.deck.faction',
+                  'variables.players.2.displayName',
+                  'variables.players.2.score',
+                  'variables.players.2.alliance',
+                  'variables.players.2.deck.faction',
                 ]}
                 label="Players"
                 placement="left"
