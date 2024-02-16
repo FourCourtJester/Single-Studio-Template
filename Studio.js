@@ -2,7 +2,7 @@
 import { Col, Row } from 'react-bootstrap'
 
 // Import our components
-import { Countdown, Cycle, ResetButton, SwapButton, Timer, Toggle, Variable } from 'components/studio'
+import { Break, Countdown, Cycle, Leaderboard, MathButton, ResetButton, SwapButton, Timer, Toggle, Variable } from 'components/studio'
 
 // Import style
 // ...
@@ -19,20 +19,7 @@ function Studio() {
               <legend className="m-0">Player One</legend>
             </Col>
             <Col xs="auto">
-              <SwapButton
-                fields={[
-                  'players.1.displayName',
-                  'players.1.score',
-                  'players.1.alliance',
-                  'players.1.deck.faction',
-                  'players.2.displayName',
-                  'players.2.score',
-                  'players.2.alliance',
-                  'players.2.deck.faction',
-                ]}
-                label="Players"
-                placement="left"
-              />
+              <SwapButton fields={['variables.players.1', 'variables.players.2']} label="Players" placement="left" />
             </Col>
           </Row>
         </Col>
@@ -42,20 +29,7 @@ function Studio() {
               <legend className="m-0">Player Two</legend>
             </Col>
             <Col xs="auto">
-              <ResetButton
-                fields={[
-                  'variables.players.1.displayName',
-                  'variables.players.1.score',
-                  'variables.players.1.alliance',
-                  'variables.players.1.deck.faction',
-                  'variables.players.2.displayName',
-                  'variables.players.2.score',
-                  'variables.players.2.alliance',
-                  'variables.players.2.deck.faction',
-                ]}
-                label="Players"
-                placement="left"
-              />
+              <ResetButton fields={['variables.players']} label="Players" placement="left" />
             </Col>
           </Row>
         </Col>
@@ -65,12 +39,19 @@ function Studio() {
           <Col key={i}>
             <Row>
               <Col>
-                <Row className="gx-2">
+                <Row className="g-2">
                   <Col>
                     <Variable label="Player Name" name={`players.${i}.displayName`} />
                   </Col>
-                  <Col xs={4} md={3} lg={2}>
+                  <Break className="d-block d-md-none" />
+                  <Col className="col" md={3} lg={3} xl={2}>
                     <Variable as="number" label="Score" name={`players.${i}.score`} />
+                  </Col>
+                  <Col xs="auto">
+                    <MathButton type="increment" name={`players.${i}.score`} />
+                  </Col>
+                  <Col xs="auto">
+                    <MathButton type="decrement" name={`players.${i}.score`} />
                   </Col>
                 </Row>
               </Col>
@@ -83,12 +64,12 @@ function Studio() {
           <Col key={i}>
             <Row>
               <Col>
-                <Row className="gx-2">
+                <Row className="g-2">
                   <Col>
                     <Variable label="Alliance" name={`players.${i}.alliance`} />
                   </Col>
                   <Col xs={4} md={3} lg={2}>
-                    <Cycle name={`players.${i}.deck.faction`} choices={['GDI', 'Nod']} image="logos/:choice:.png" variant="link" />
+                    <Cycle label="Faction" name={`players.${i}.deck.faction`} choices={['GDI', 'Nod']} image="logos/:choice:.png" />
                   </Col>
                 </Row>
               </Col>
@@ -96,37 +77,44 @@ function Studio() {
           </Col>
         ))}
       </Row>
+      <hr />
       <Row>
         <Col>
-          <legend>Series</legend>
+          <legend>Timers</legend>
         </Col>
       </Row>
-      <Row>
+      <Row className="g-2">
         <Col xs={12} sm={6}>
-          <Row className="gx-2 h-100">
+          <Row>
             <Col>
               <Timer label="Timer" name="countdown" />
             </Col>
           </Row>
         </Col>
-        <Col className="mt-2 mt-sm-0" xs={12} sm={6}>
-          <Row className="gx-2 h-100">
+        <Col xs={12} sm={6}>
+          <Row>
             <Col>
               <Countdown as="time" label="Countdown" name="launch" />
             </Col>
           </Row>
         </Col>
       </Row>
+      <hr />
       <Row>
+        <Col>
+          <legend>Series</legend>
+        </Col>
+      </Row>
+      <Row className="g-2">
         <Col xs={12} sm={6}>
-          <Row className="gx-2">
+          <Row>
             <Col>
               <Variable label="Round" name="series.round" />
             </Col>
           </Row>
         </Col>
-        <Col className="mt-2 mt-sm-0" xs={12} sm={6}>
-          <Row className="gx-2">
+        <Col xs={12} sm={6}>
+          <Row className="g-2">
             <Col>
               <Variable as="number" label="Game" name="series.game.current" />
             </Col>
@@ -140,17 +128,19 @@ function Studio() {
         </Col>
       </Row>
       <hr />
+      <Leaderboard label="Top 10 Leaderboard" name="leaderboard" rows={10} />
+      <hr />
       <Row>
         <Col>
           <legend>Toggles</legend>
         </Col>
         <Col xs="auto">
-          <ResetButton fields={['timers.countdown', 'toggles.missile', 'variables.map']} label="Map & Missiles" placement="left" />
+          <ResetButton fields={['toggles.missile', 'variables.map']} label="Map & Missiles" placement="left" />
         </Col>
       </Row>
       <Row>
         <Col>
-          <Row className="d-flex flex-row align-items-center h-100 gx-2">
+          <Row className="g-2">
             <Col>
               <Toggle icon="rocket" name="missile.1.player.1" group={['missile.1.player.1', 'missile.1.player.2']} />
             </Col>
@@ -162,8 +152,9 @@ function Studio() {
             </Col>
           </Row>
         </Col>
+        <Break className="d-block d-sm-none" />
         <Col>
-          <Row className="d-flex flex-row align-items-center h-100 gx-2">
+          <Row className="g-2">
             <Col>
               <Toggle icon="rocket" name="missile.1.player.2" variant="danger" group={['missile.1.player.1', 'missile.1.player.2']} />
             </Col>
