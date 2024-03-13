@@ -85,14 +85,14 @@ function Studio() {
       </Row>
       <Row className="g-2">
         <Col xs={12} sm={6}>
-          <Row>
+          <Row className="h-100">
             <Col>
               <Timer label="Timer" name="countdown" />
             </Col>
           </Row>
         </Col>
         <Col xs={12} sm={6}>
-          <Row>
+          <Row className="h-100">
             <Col>
               <Countdown as="time" label="Countdown" name="launch" />
             </Col>
