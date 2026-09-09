@@ -4,8 +4,15 @@ A [Single Studio](https://fourcourtjester.github.io/Single-Studio/) broadcast
 graphics project: an operator's board that runs as a dock inside OBS, and one
 browser source per graphic.
 
-One repo per show. The repo's name is the show's address, the studio's `name` is its
-label, and neither has to match anything on any server.
+One repo per show. The repo's name is the show's address, `STUDIO_NAME` is its label,
+and neither has to match anything on any server.
+
+Both names live in `src/studio/config.js`, which is the first file worth editing:
+
+```js
+export const STUDIO_NAME = 'My Studio' // shown to people; change it any time
+export const STUDIO_ID = 'my-studio' // where the show is filed; changing it starts an empty one
+```
 
 ## Run it
 
@@ -25,6 +32,19 @@ comes with Node. If you switch, change the two `run` lines in
 Commit the lockfile that first install produces. Nothing breaks without it — the
 deploy workflow survives a repository that has never been installed — but it is what
 makes a build today and a build in six months the same build.
+
+**Pages has to be switched on once, and this workflow cannot do it for itself.**
+Enabling Pages from inside an action needs a personal access token with `repo` scope,
+which is a worse thing to keep around than one click. Switch **Settings → Pages →
+Source** to **GitHub Actions**, or run:
+
+```bash
+gh api -X POST repos/<you>/<this-repo>/pages -f build_type=workflow
+```
+
+Either is idempotent — a repository that already has Pages on answers `409`. Skip it
+and the first deploy fails on a repository nobody has touched yet, for a reason that
+reads like a broken template.
 
 ## Where things live
 
